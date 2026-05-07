@@ -1,0 +1,169 @@
+/* ===== TAILWIND DIRECTIVES ===== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== CUSTOM CSS VARIABLES ===== */
+:root {
+  /* Professional Color Variables */
+  --color-primary: #0f172a;
+  --color-secondary: #1e293b;
+  --color-accent: #f59e0b;
+  --color-neon: #22d3ee;
+  --color-gold: #fbbf24;
+  
+  /* Glass Effect Variables */
+  --glass-bg: rgba(15, 23, 42, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: rgba(34, 211, 238, 0.1);
+  
+  /* Animation Variables */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s ease;
+}
+
+/* ===== BASE STYLES ===== */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: #e2e8f0;
+    background-color: #020617;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* ===== COMPONENT STYLES ===== */
+@layer components {
+  .glass-morphism {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1rem;
+    transition: var(--transition-smooth);
+  }
+  
+  .glass-morphism:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px var(--glass-shadow);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #f59e0b 50%, #fbbf24 75%, #0f172a 100%);
+    color: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    border: 2px solid transparent;
+    background-size: 200% 200%;
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(34, 211, 238, 0.3);
+    background-position: 100% 0;
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: #22d3ee;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    border: 2px solid #22d3ee;
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-secondary:hover {
+    background: rgba(34, 211, 238, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(34, 211, 238, 0.2);
+  }
+}
+
+/* ===== UTILITY STYLES ===== */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #22d3ee, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* ===== KEYFRAMES ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(34, 211, 238, 0.6); }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .glass-morphism {
+    padding: 1.5rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== DARK MODE OVERRIDES ===== */
+.dark {
+  color-scheme: dark;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .no-print {
+    display: none;
+  }
+  
+  .print-only {
+    display: block;
+  }
+  
+  * {
+    color: black !important;
+    background: white !important;
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
